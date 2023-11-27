@@ -13,6 +13,7 @@ module.exports = (app) => {
   router.get("/overview", authJwt, booking_controller.overview);
   router.get("/weeklyoverview", authJwt, booking_controller.weeklyOverview);
   router.put("/mostbookedroom", authJwt, booking_controller.MostBookedRoom);
+  router.get("/topspender", authJwt, booking_controller.TopSpender);
   
   router.put("/getTotalIncome", authJwt, booking_controller.getIncome);
   router.get("/getAllBooked", authJwt, booking_controller.getAllBooked);

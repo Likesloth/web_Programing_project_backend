@@ -139,6 +139,23 @@ Booking.getMostBookedRoom = (data, result) => {
   );
 };
 
+Booking.getTopSpender = (data, result) => {
+  sql.query(
+    "SELECT u.Username, SUM(TotalPrice) AS Spend FROM booking b join users u ON b.UserID = u.UserID GROUP BY b.UserID ORDER BY Spend DESC LIMIT 5",
+    [data.Username, data.spend],
+    (err, res) => {
+      if (err) {
+        console.log("Query err: " + err);
+        result(err, null);
+        return;
+      } else {
+        console.log("return the Most Booked Room From this date" + data.BookingDate + "Room Number:" + data.RoomNumber + "Booking Count:" + data.BookingCount);
+        result(null, res);
+      }
+    }
+  );
+};
+
 
 Booking.getUser = (date, result) => {
   sql.query(

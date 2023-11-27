@@ -106,6 +106,18 @@ const MostBookedRoom = (req, res) => {
   });
 };
 
+const TopSpender = (req, res) => {
+  const data = {
+    Username: req.body.Username,
+    spend: req.body.spend,
+  };
+  booking.getTopSpender(data, (err, data) => {
+    if (err) {
+      res.status(500).send({ message: err.message || "Some error ocurred." });
+    } else res.send(data);
+  });
+};
+
 const getuser = (req, res) => {
   const data = {
     BookingDate: req.body.BookingDate,
@@ -169,4 +181,5 @@ module.exports = {
   getcurrentstetus,
   weeklyOverview,
   MostBookedRoom,
+  TopSpender,
 };

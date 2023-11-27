@@ -124,15 +124,15 @@ Booking.getWeeklyOverview = (data, result) => {
 };
 Booking.getMostBookedRoom = (data, result) => {
   sql.query(
-    "SELECT r.RoomNumber, COUNT(*) AS BookingCount FROM booking b join room r ON b.RoomID = r.RoomID GROUP BY b.RoomID ORDER BY BookingCount DESC LIMIT 5;",
-    [data.RoomNumber,data.BookingCount],
+    "SELECT r.RoomNumber, COUNT(*) AS BookingCount FROM booking b join room r ON b.RoomID = r.RoomID WHERE b.BookingDate = ? GROUP BY b.RoomID ORDER BY BookingCount DESC",
+    [data.BookingDate, data.RoomNumber, data.BookingCount],
     (err, res) => {
       if (err) {
         console.log("Query err: " + err);
         result(err, null);
         return;
       } else {
-        console.log("return the total price for data: " + data.RoomNumber + "till this data:" + data.BookingCount);
+        console.log("return the Most Booked Room From this date" + data.BookingDate + "Room Number:" + data.RoomNumber + "Booking Count:" + data.BookingCount);
         result(null, res);
       }
     }

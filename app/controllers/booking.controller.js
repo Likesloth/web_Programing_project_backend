@@ -95,6 +95,7 @@ const weeklyOverview = (req, res) => {
 
 const MostBookedRoom = (req, res) => {
   const data = {
+    BookingDate: req.body.BookingDate,
     RoomNumber: req.body.RoomNumber,
     BookingCount: req.body.BookingCount,
   };
